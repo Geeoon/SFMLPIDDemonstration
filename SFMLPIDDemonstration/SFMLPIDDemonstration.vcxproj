@@ -19,7 +19,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\classes\Scene.cpp" />
+    <ClCompile Include="src\classes\Mass.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\classes\UIManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\classes\Scene.h" />
+    <ClInclude Include="src\classes\Mass.h" />
+    <ClInclude Include="src\classes\UIManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

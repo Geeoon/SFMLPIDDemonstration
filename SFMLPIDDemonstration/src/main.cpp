@@ -1,6 +1,8 @@
 #include <iostream>
+#include "classes/Scene.h"
 
 int main() {
-	std::cout << "hello world";
+	Scene scene;
+	scene.start();
 	return 0;
 }
