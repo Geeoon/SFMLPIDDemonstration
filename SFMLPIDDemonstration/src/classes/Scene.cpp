@@ -10,6 +10,7 @@ void Scene::start() {
 		ui.getWindow().clear();
 
 		pid.update();
+		ui.getWindow().draw(pid.getTargetShape());
 		mass.update();
 		
 		ui.getWindow().draw(mass.getShape());

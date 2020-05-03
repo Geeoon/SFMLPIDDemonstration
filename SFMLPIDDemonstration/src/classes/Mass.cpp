@@ -22,3 +22,7 @@ void Mass::update() {
 sf::RectangleShape& Mass::getShape() {
 	return shape;
 }
+
+double Mass::getPosition() {
+	return yPosition;
+}

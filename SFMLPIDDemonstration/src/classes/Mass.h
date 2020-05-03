@@ -7,6 +7,7 @@ public:
 	Mass();
 	void applyForce(double force);
 	void update();
+	double getPosition();
 	sf::RectangleShape& getShape();
 private:
 	sf::RectangleShape shape;
