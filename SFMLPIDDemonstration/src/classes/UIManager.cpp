@@ -2,6 +2,7 @@
 
 UIManager::UIManager() {
 	window.create(sf::VideoMode(800, 800), "PID Demonstration", sf::Style::Close);
+	window.setFramerateLimit(60);
 }
 
 sf::RenderWindow& UIManager::getWindow() {

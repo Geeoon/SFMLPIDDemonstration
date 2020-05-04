@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include <ctime>
+#include <iostream>
+#include <chrono>
 
 class PIDController
 {
@@ -15,8 +16,8 @@ private:
 	double calcP();
 	double calcI();
 	double calcD();
-	double kProportional = 1;
-	double kIntegral = .10;
+	double kProportional = 2;
+	double kIntegral = 0;
 	double kDerivative = 0;
 	double target = 100;
 	double force = 100;

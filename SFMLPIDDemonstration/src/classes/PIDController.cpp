@@ -5,7 +5,7 @@ PIDController::PIDController() {
 	targetLine.setFillColor(sf::Color::Green);
 	targetLine.setOrigin(targetLine.getLocalBounds().width / 2, targetLine.getLocalBounds().height / 2);
 	targetLine.setPosition(200, target);
-	previousTime = time(nullptr);
+	previousTime = std::chrono::system_clock::now().time_since_epoch().count();
 }
 
 void PIDController::setConstants(double kP, double kI, double kD) {
@@ -26,6 +26,7 @@ double PIDController::update(double processVar) {
 	errorRate = (error - lastError) / dt;
 	lastError = error;
 	force = calcP() + calcI() + calcD();
+	previousTime = std::chrono::system_clock::now().time_since_epoch().count();
 	return force;
 }
 
@@ -38,7 +39,7 @@ double PIDController::calcI() {
 }
 
 double PIDController::calcD() {
-	return kDerivative * (lastError - error);
+	return kDerivative * errorRate;
 }
 
 sf::RectangleShape& PIDController::getTargetShape() {
