@@ -6,6 +6,7 @@ PIDController::PIDController() {
 	targetLine.setOrigin(targetLine.getLocalBounds().width / 2, targetLine.getLocalBounds().height / 2);
 	targetLine.setPosition(200, target);
 	previousTime = std::chrono::system_clock::now().time_since_epoch().count();
+	clock.restart();
 }
 
 void PIDController::setConstants(double kP, double kI, double kD) {
@@ -20,13 +21,14 @@ void PIDController::setTarget(double y) {
 }
 
 double PIDController::update(double processVar) {
+	elapsedTime = clock.getElapsedTime();
+	clock.restart();
 	error = processVar - target;
-	dt = time(nullptr) - previousTime;
+	dt = elapsedTime.asSeconds();
 	errorSum += error * dt;
 	errorRate = (error - lastError) / dt;
 	lastError = error;
 	force = calcP() + calcI() + calcD();
-	previousTime = std::chrono::system_clock::now().time_since_epoch().count();
 	return force;
 }
 

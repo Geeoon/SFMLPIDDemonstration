@@ -13,14 +13,16 @@ public:
 	sf::RectangleShape& getTargetShape();
 private:
 	sf::RectangleShape targetLine;
+	sf::Time elapsedTime;
+	sf::Clock clock;
 	double calcP();
 	double calcI();
 	double calcD();
-	double kProportional = 2;
-	double kIntegral = 0;
-	double kDerivative = 0;
+	double kProportional = 2.5;
+	double kIntegral = .2;
+	double kDerivative = 0.1;
 	double target = 100;
-	double force = 100;
+	double force = 0;
 	double error = 0;
 	double lastError = 0;
 	double previousTime = 0;
