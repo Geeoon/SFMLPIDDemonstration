@@ -15,12 +15,15 @@ private:
 	double calcP();
 	double calcI();
 	double calcD();
-	double kProportional = 2;
-	double kIntegral = 0;
+	double kProportional = 1;
+	double kIntegral = .10;
 	double kDerivative = 0;
 	double target = 100;
 	double force = 100;
 	double error = 0;
-	double dt = 0;
+	double lastError = 0;
 	double previousTime = 0;
+	double dt = 0;
+	double errorSum = 0;
+	double errorRate = 0;
 };

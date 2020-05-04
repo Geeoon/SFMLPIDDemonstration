@@ -5,6 +5,7 @@ PIDController::PIDController() {
 	targetLine.setFillColor(sf::Color::Green);
 	targetLine.setOrigin(targetLine.getLocalBounds().width / 2, targetLine.getLocalBounds().height / 2);
 	targetLine.setPosition(200, target);
+	previousTime = time(nullptr);
 }
 
 void PIDController::setConstants(double kP, double kI, double kD) {
@@ -20,7 +21,11 @@ void PIDController::setTarget(double y) {
 
 double PIDController::update(double processVar) {
 	error = processVar - target;
-	force = calcP();
+	dt = time(nullptr) - previousTime;
+	errorSum += error * dt;
+	errorRate = (error - lastError) / dt;
+	lastError = error;
+	force = calcP() + calcI() + calcD();
 	return force;
 }
 
@@ -29,11 +34,11 @@ double PIDController::calcP() {
 }
 
 double PIDController::calcI() {
-	return 0;
+	return kIntegral * errorSum;
 }
 
 double PIDController::calcD() {
-	return 0;
+	return kDerivative * (lastError - error);
 }
 
 sf::RectangleShape& PIDController::getTargetShape() {
