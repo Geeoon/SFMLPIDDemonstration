@@ -18,9 +18,9 @@ private:
 	double calcP();
 	double calcI();
 	double calcD();
-	double kProportional = 2;
-	double kIntegral = 0;
-	double kDerivative = 1;
+	double kProportional = 50;
+	double kIntegral = 2.5;
+	double kDerivative = 7;
 	double target = 100;
 	double force = 0;
 	double error = 0;
