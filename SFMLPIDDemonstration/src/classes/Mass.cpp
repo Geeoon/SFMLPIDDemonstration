@@ -3,6 +3,7 @@
 Mass::Mass() {
 	shape.setSize(sf::Vector2f(20, 20));
 	shape.setFillColor(sf::Color::Red);
+	shape.setOrigin(shape.getLocalBounds().width / 2, shape.getLocalBounds().height / 2);
 	shape.setPosition(200, yPosition);
 }
 

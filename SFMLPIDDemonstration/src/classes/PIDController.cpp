@@ -3,6 +3,7 @@
 PIDController::PIDController() {
 	targetLine.setSize(sf::Vector2f(100, 2));
 	targetLine.setFillColor(sf::Color::Green);
+	targetLine.setOrigin(targetLine.getLocalBounds().width / 2, targetLine.getLocalBounds().height / 2);
 	targetLine.setPosition(200, target);
 }
 
@@ -12,22 +13,19 @@ void PIDController::setConstants(double kP, double kI, double kD) {
 	kDerivative = kD;
 }
 
-void PIDController::setMass(Mass *m) {
-	mass = m;
-}
-
 void PIDController::setTarget(double y) {
 	target = y;
 	targetLine.setPosition(200, target);
 }
 
-void PIDController::update() {
+double PIDController::update(double processVar) {
+	error = processVar - target;
 	force = calcP();
-	mass->applyForce(force);
+	return force;
 }
 
 double PIDController::calcP() {
-	return (mass->getPosition() - target) * kProportional;
+	return error * kProportional;
 }
 
 double PIDController::calcI() {

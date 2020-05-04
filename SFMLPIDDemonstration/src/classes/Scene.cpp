@@ -1,7 +1,7 @@
 #include "Scene.h"
 
 Scene::Scene() {
-	pid.setMass(&mass);
+
 }
 
 void Scene::start() {
@@ -9,7 +9,7 @@ void Scene::start() {
 		ui.pollEvent();
 		ui.getWindow().clear();
 
-		pid.update();
+		mass.applyForce(pid.update(mass.getPosition()));
 		ui.getWindow().draw(pid.getTargetShape());
 		mass.update();
 		
