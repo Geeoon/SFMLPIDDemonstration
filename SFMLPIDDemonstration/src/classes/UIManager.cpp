@@ -16,7 +16,7 @@ void UIManager::pollEvent() {
 			sf::FloatRect visibleArea(0, 0, event.size.width, event.size.height);
 			window.setView(sf::View(visibleArea));
 		}
-
+		
 		if (event.type == sf::Event::Closed) {
 			window.close();
 		}
